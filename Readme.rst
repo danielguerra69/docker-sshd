@@ -33,5 +33,18 @@ $ docker run --volumes-from ssh-container -v $(pwd):/backup debian:jessie cp -R 
 
 start docker ssh front
 ```bash
-docker run -d -p 2222:22 --name ssh-docker --volumes-from ssh-container --link shared-docker:docker danielguerra/docker-sshd
+docker run -d -p 2222:22 --net=container:shared-docker --name ssh-docker --volumes-from ssh-container --link shared-docker:docker danielguerra/docker-sshd
+```
+
+### Routing to containers started in ssh-docker
+In order to forward or connect to the started containers in ssh-docker you need to add a route to the shared-docker of the main docker host to the shared-dockerhost.
+In ssh-docker
+```bash
+docker inspect my-container-name
+```
+Check the container-ip
+
+In the main docker , in which the shared and ssh docker is running do
+```bash
+route add -net container-ip-net netmask 255.255.255.0 gw shared-docker-ip
 ```
