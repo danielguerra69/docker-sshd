@@ -20,15 +20,15 @@ $ docker create -v /root/.ssh --name ssh-container danielguerra/ssh-container /b
 ```
 create your own keys on your own machine
 ```bash
-$ docker run --volumes-from ssh-container debian:jessie ssh-keygen -q
+$ docker run --volumes-from ssh-container danielguerra/docker-sshd ssh-keygen -q
 ```
 add your pub key to authorized_keys file
 ```bash
-$ docker run --volumes-from ssh-container debian:jessie cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+$ docker run --volumes-from ssh-container danielguerra/docker-sshd cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 ```
 create a copy in your directory (pwd)
 ```bash
-$ docker run --volumes-from ssh-container -v $(pwd):/backup debian:jessie cp -R /root/.ssh/* /backup
+$ docker run --volumes-from ssh-container -v $(pwd):/backup danielguerra/docker-sshd cp -R /root/.ssh/* /backup
 ```
 
 start docker ssh front
