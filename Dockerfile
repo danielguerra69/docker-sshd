@@ -12,5 +12,7 @@ RUN apk --update add py-pip py-yaml openssh &&\
 # script generates new server key, sets sshd config for keybased auth and starts sshd
 ADD sshd.sh /bin/sshd.sh
 
+#set env for docker
+RUN echo "export DOCKER_HOST='tcp://docker:2375'" >> /etc/profile
 #start sshd
 CMD ["/bin/sshd.sh"]

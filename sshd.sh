@@ -15,5 +15,6 @@ sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config
 sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 sed -i "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" /etc/ssh/sshd_config
 
+source /etc/profile
 # start ssh daemon
 /usr/sbin/sshd -D
