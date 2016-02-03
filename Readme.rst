@@ -33,7 +33,7 @@ $ docker run --volumes-from ssh-container -v $(pwd):/backup danielguerra/docker-
 
 start docker ssh front
 ```bash
-docker run -d -p 2222:22 --net=container:shared-docker --name ssh-docker --volumes-from ssh-container --link shared-docker:docker danielguerra/docker-sshd
+docker run -d -p 2222:22 --name ssh-docker  --volumes-from ssh-container --link shared-docker:docker danielguerra/docker-sshd
 ```
 
 ### Routing to containers started in ssh-docker
