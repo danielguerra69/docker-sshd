@@ -24,7 +24,7 @@ $ docker run --volumes-from ssh-container danielguerra/docker-sshd ssh-keygen -q
 ```
 add your pub key to authorized_keys file
 ```bash
-$ docker run --volumes-from ssh-container danielguerra/docker-sshd cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+$ docker run --volumes-from ssh-container danielguerra/docker-sshd /bin/cp /root/.ssh/id_rsa.pub  /root/.ssh/authorized_keys
 ```
 create a copy in your directory (pwd)
 ```bash
