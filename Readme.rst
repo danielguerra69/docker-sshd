@@ -1,8 +1,8 @@
-ssh front for docker:dind
+ssh front for docker:1.10.2-dind with docker-compose 1.6.2
 
 ### Dependencies
 
-* [![2.0.0](https://badge.imagelayers.io/docker.svg)](https://imagelayers.io/?images=docker:1.9 '1.9') docker:1.9
+* [![1.10.2](https://badge.imagelayers.io/docker.svg)](https://imagelayers.io/?images=docker:1.10.2 '1.10.2') docker:1.10.2
 
 ### Image Size
 
@@ -12,7 +12,7 @@ ssh front for docker:dind
 
 start docker dind server
 ```bash
-docker run --privileged --name shared-docker -d docker:dind
+docker run --privileged --name shared-docker -d docker:1.10.2-dind
 ```
 create an empty ssh volume
 ```bash
