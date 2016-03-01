@@ -6,6 +6,7 @@ MAINTAINER Daniel Guerra <daniel.guerra69@gmail.com>
 ENV DOCKER_COMPOSE_VERSION 1.6.2
 
 RUN apk --update add py-pip py-yaml openssh git &&\
+    pip install --upgrade pip &&\
     pip install -U docker-compose==${DOCKER_COMPOSE_VERSION}
 
 # script generates new server key, sets sshd config for keybased auth and starts sshd
