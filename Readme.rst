@@ -1,8 +1,8 @@
-ssh front for docker:1.10.2-dind with docker-compose 1.6.2
+ssh front for docker:1.12-dind with docker-compose 1.6.2
 
 ### Dependencies
 
-* [![1.10.2](https://badge.imagelayers.io/docker.svg)](https://imagelayers.io/?images=docker:1.10.2 '1.10.2') docker:1.10.2
+* [![1.12](https://badge.imagelayers.io/docker.svg)](https://imagelayers.io/?images=docker:1.12 '1.12') docker:1.12
 
 ### Image Size
 
@@ -12,7 +12,7 @@ ssh front for docker:1.10.2-dind with docker-compose 1.6.2
 
 start docker dind server
 ```bash
-docker run --privileged --name shared-docker -d docker:1.10.2-dind
+docker run --privileged --name shared-docker -d docker:1.12-dind
 ```
 create an empty ssh volume
 ```bash
@@ -21,7 +21,7 @@ $ docker create -v /root/.ssh --name ssh-container danielguerra/ssh-container /b
 create your own keys on your own machine
 ```bash
 
-$ docker run --volumes-from ssh-container danielguerra/docker-sshd ssh-keygen -t rsa -f /root/.ssh/id_rsa -N
+$ docker run --volumes-from ssh-container danielguerra/docker-sshd ssh-keygen -t rsa -f /root/.ssh/id_rsa
 ```
 add your pub key to authorized_keys file
 ```bash
