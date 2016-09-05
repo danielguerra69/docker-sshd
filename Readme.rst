@@ -1,4 +1,4 @@
-ssh front for docker:1.12-dind with docker-compose 1.6.2
+ssh front for docker:1.12-dind with docker-compose 1.8.0
 
 ### Dependencies
 
@@ -34,7 +34,12 @@ $ docker run --volumes-from ssh-container -v $(pwd):/backup danielguerra/docker-
 
 start docker ssh front
 ```bash
-docker run -d -p 2222:22 --name ssh-docker  --volumes-from ssh-container --link shared-docker:docker danielguerra/docker-sshd
+$ docker run -d -p 2222:22 --name ssh-docker  --volumes-from ssh-container --link shared-docker:docker danielguerra/docker-sshd
+```
+
+ssh to your new docker environment
+```bash
+$ ssh -i ./id_rsa -p 2222 root@dockerhost
 ```
 
 ### Routing to containers started in ssh-docker
@@ -47,5 +52,13 @@ Check the container-ip
 
 In the main docker , in which the shared and ssh docker is running do
 ```bash
-route add -net container-ip-net netmask 255.255.255.0 gw shared-docker-ip
+$ route add -net container-ip-net netmask 255.255.255.0 gw shared-docker-ip
 ```
+
+Now you can use port forwards in your ssh command to get the service local
+```bash
+$ ssh -i ./id_rsa -p 2222 -L 8080:container-ip:container-port root@dockerhost
+```
+
+After this you can connect to localhost port 8080 to get to the service inside
+your docker-ssh.
