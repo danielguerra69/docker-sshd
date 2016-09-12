@@ -8,7 +8,8 @@ ENV COMPOSE_API_VERSION=1.18
 
 RUN apk --update add py-pip openssh git &&\
     pip install --upgrade pip &&\
-    pip install -U docker-compose==${DOCKER_COMPOSE_VERSION}
+    pip install -U docker-compose==${DOCKER_COMPOSE_VERSION} &&\
+    rm -rf /tmp/* /var/cache/apk/*
 
 # script generates new server key, sets sshd config for keybased auth and starts sshd
 ADD sshd.sh /bin/sshd.sh
