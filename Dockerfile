@@ -11,10 +11,9 @@ RUN apk --update add py-pip openssh git &&\
     pip install -U docker-compose==${DOCKER_COMPOSE_VERSION} &&\
     rm -rf /tmp/* /var/cache/apk/*
 
-# script generates new server key, sets sshd config for keybased auth and starts sshd
-ADD sshd.sh /bin/sshd.sh
+# configure container
+ADD docker-entrypoint.sh /usr/local/bin
+ENTRYPOINT ["docker-entrypoint.sh"]
 
-#set env for docker
-RUN echo "export DOCKER_HOST='tcp://docker:2375'" >> /etc/profile
 #start sshd
-CMD ["/bin/sshd.sh"]
+CMD ["/usr/sbin/sshd","-D"]

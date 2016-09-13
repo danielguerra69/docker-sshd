@@ -34,7 +34,7 @@ $ docker run --volumes-from ssh-container -v $(pwd):/backup danielguerra/docker-
 
 start docker ssh front
 ```bash
-$ docker run -d -p 2222:22 --name ssh-docker  --volumes-from ssh-container --link shared-docker:docker danielguerra/docker-sshd
+$ docker run -d -p 2222:22 --name ssh-docker  --volumes-from ssh-container -e DOCKER_IP="172.17.0.1" -e DOCKER_PORT="2375" danielguerra/docker-sshd
 ```
 
 ssh to your new docker environment
